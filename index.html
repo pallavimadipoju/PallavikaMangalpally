@@ -157,6 +157,138 @@
     margin-bottom: 34px;
   }
 
+  .exp-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .exp-badge{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid;
+  }
+  .exp-badge .num{ font-weight: 600; font-size: 14px; }
+  .exp-badge.dense{ background: var(--dense-soft); border-color: rgba(52,84,255,0.25); color: var(--dense); }
+  .exp-badge.sparse{ background: var(--sparse-soft); border-color: rgba(15,169,143,0.25); color: var(--sparse); }
+
+  .focus-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .focus-tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+
+  @keyframes fadeUp{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .fade-in{
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .fade-in.d1{ animation-delay: 0.05s; }
+  .fade-in.d2{ animation-delay: 0.15s; }
+  .fade-in.d3{ animation-delay: 0.25s; }
+  .fade-in.d4{ animation-delay: 0.35s; }
+  .fade-in.d5{ animation-delay: 0.45s; }
+  @media (prefers-reduced-motion: reduce){
+    .fade-in{ opacity: 1; animation: none; }
+  }
+
+  .avatar{
+    width: 76px; height: 76px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dense), var(--sparse));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .avatar::before{
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+  }
+  .avatar span{
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .name-divider{
+    width: 52px; height: 3px;
+    background: linear-gradient(90deg, var(--dense), var(--sparse));
+    border-radius: 2px;
+    margin: 22px 0 22px;
+  }
+
+  .cta-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .cta-row .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .cta-row .btn svg{ width: 16px; height: 16px; flex-shrink: 0; }
+  .cta-row .btn-primary{
+    background: var(--dense);
+    color: #fff;
+  }
+  .cta-row .btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(52,84,255,0.28);
+  }
+  .cta-row .btn-secondary{
+    background: var(--card);
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .cta-row .btn-secondary:hover{
+    transform: translateY(-2px);
+    border-color: var(--dense);
+    color: var(--dense);
+  }
+  .cta-row .plain{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .cta-row .plain svg{ width: 15px; height: 15px; flex-shrink: 0; color: var(--ink-faint); }
+
   .contact-row{
     display: flex;
     flex-wrap: wrap;
@@ -436,6 +568,96 @@
   .footer-dots span{ width:5px; height:5px; border-radius:50%; background: var(--dense); opacity: 0.5; }
   .footer-dots span:nth-child(2n){ background: var(--sparse); }
 
+  /* Case studies */
+  .case-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .case-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    transition: box-shadow .25s ease, transform .25s ease;
+  }
+  .case-card:hover{
+    box-shadow: 0 12px 32px rgba(18,21,26,0.08);
+    transform: translateY(-2px);
+  }
+  .case-card h3{
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  .case-row{
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .case-row:last-child{ margin-bottom: 0; }
+  .case-tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 0;
+    width: 84px;
+    flex-shrink: 0;
+    color: var(--ink-faint);
+  }
+  .case-row.problem .case-tag{ color: var(--ink-faint); }
+  .case-row.approach .case-tag{ color: var(--dense); }
+  .case-row.result .case-tag{ color: var(--sparse); }
+  .case-text{
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .case-text strong{ color: var(--ink); font-weight: 600; }
+
+  /* Downloads */
+  .dl-row{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .dl-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color .2s, transform .15s;
+  }
+  .dl-btn:hover{ border-color: var(--dense); color: var(--dense); transform: translateY(-1px); }
+  .dl-btn svg{ width: 14px; height: 14px; }
+
+  /* Print stylesheet */
+  @media print{
+    nav, .progress-bar, #vectorfield, .hero::after, .dl-row, .avatar{ display: none !important; }
+    body{ background: #fff; color: #000; }
+    .hero{ min-height: auto; padding-top: 10px; }
+    .hero-content{ padding: 0; }
+    section{ padding: 20px 0; page-break-inside: avoid; }
+    .about-card, .cluster, .skill-card, .box, .case-card, .stat{
+      box-shadow: none !important;
+      transform: none !important;
+      border: 1px solid #ccc !important;
+      break-inside: avoid;
+    }
+    .reveal{ opacity: 1 !important; transform: none !important; }
+    a{ color: #000 !important; text-decoration: underline; }
+    .chip{ border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; }
+    .cta-row .btn-primary{ background: #fff !important; color: #000 !important; border: 1px solid #000; }
+  }
+
   @media (max-width: 720px){
     nav{ display: none; }
     .stats{ grid-template-columns: repeat(2, 1fr); }
@@ -456,6 +678,7 @@
 <nav>
   <a href="#about">About</a>
   <a href="#experience">Experience</a>
+  <a href="#work">Case Studies</a>
   <a href="#skills">Index</a>
   <a href="#credentials">Credentials</a>
 </nav>
@@ -464,13 +687,38 @@
   <canvas id="vectorfield"></canvas>
   <div class="hero-content">
     <div class="hero-inner">
-      <h1 class="name">Pallavika<br>Mangalpally</h1>
-      <p class="role">AI Engineer — building <span class="dense-word">RAG pipelines</span> &amp; agentic systems</p>
-      <p class="lede">Production software engineer specializing in multimodal retrieval, hybrid search, and agentic AI workflows at enterprise scale — turning messy documents, tickets, and design files into systems that reason.</p>
-      <div class="contact-row">
-        <a href="mailto:pallavimadipoju@gmail.com" onclick="window.location.href='mailto:pallavimadipoju@gmail.com'; return false;"><span class="dot-mark"></span>pallavimadipoju@gmail.com</a>
-        <a href="https://www.linkedin.com/in/pallavika1919/" target="_blank" rel="noopener"><span class="dot-mark ring"></span>linkedin.com/in/pallavika1919</a>
-        <span><span class="dot-mark"></span>Hyderabad, India</span>
+      <h1 class="name fade-in d2">Pallavika<br>Mangalpally</h1>
+      <div class="name-divider fade-in d2"></div>
+      <p class="role fade-in d3">AI Engineer — building <span class="dense-word">RAG pipelines</span> &amp; agentic systems</p>
+      <p class="lede fade-in d3">Production software engineer specializing in multimodal retrieval, hybrid search, and agentic AI workflows at enterprise scale — turning messy documents, tickets, and design files into systems that reason.</p>
+      <div class="focus-row fade-in d3">
+        <span class="focus-tag">RAG Architecture</span>
+        <span class="focus-tag">Agentic AI</span>
+        <span class="focus-tag">Hybrid Vector Search</span>
+        <span class="focus-tag">LLM Integration</span>
+        <span class="focus-tag">Multi-Agent Systems</span>
+      </div>
+      <div class="exp-row fade-in d4">
+        <span class="exp-badge dense"><span class="num" id="expFulltime">2.6 yrs</span> full-time</span>
+        <span class="exp-badge sparse"><span class="num" id="expTotal">3.1 yrs</span> total (incl. internship)</span>
+      </div>
+      <div class="cta-row fade-in d5">
+        <a class="btn btn-primary" href="mailto:pallavimadipoju@gmail.com" onclick="window.location.href='mailto:pallavimadipoju@gmail.com'; return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
+          Email me
+        </a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/pallavika1919/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 8.98h4v12H3v-12zm7 0h3.83v1.64h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1v6.32h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96v5.7h-4v-12z"/></svg>
+          LinkedIn
+        </a>
+        <button class="btn btn-secondary" onclick="window.print()" style="border:1px solid var(--line); cursor:pointer; font:inherit;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download PDF
+        </button>
+        <span class="plain">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Hyderabad, India
+        </span>
       </div>
     </div>
   </div>
@@ -541,8 +789,47 @@
     </div>
   </section>
 
+  <section id="work" class="reveal">
+    <div class="eyebrow"><span class="n">03</span> — Selected Work</div>
+    <div class="section-head"><h2>Case studies</h2></div>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <h3>Multimodal RAG for document re-extraction</h3>
+        <div class="case-row problem">
+          <span class="case-tag">Problem</span>
+          <span class="case-text">Re-extracting data from scanned documents relied on slow, error-prone manual validation with no reliable way to retrieve relevant context across mixed text and image content.</span>
+        </div>
+        <div class="case-row approach">
+          <span class="case-tag">Approach</span>
+          <span class="case-text">Designed a <strong>multimodal RAG pipeline</strong> integrating OCR and vision models, then architected vector indexing and hybrid dense/sparse retrieval strategies over the extracted content.</span>
+        </div>
+        <div class="case-row result">
+          <span class="case-tag">Result</span>
+          <span class="case-text">Cut manual validation effort by <strong>~70%</strong>, with retrieval accurate enough to be trusted in production workflows.</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <h3>Agentic pipeline for Jira-to-test-case generation</h3>
+        <div class="case-row problem">
+          <span class="case-tag">Problem</span>
+          <span class="case-text">Writing test cases for each Jira story was fully manual, taking engineers 1–2 hours per story and creating a bottleneck before sprints could close.</span>
+        </div>
+        <div class="case-row approach">
+          <span class="case-tag">Approach</span>
+          <span class="case-text">Built an <strong>agentic AI workflow</strong> with tool calling, planning, and orchestration to ingest Jira stories directly and generate structured test cases automatically.</span>
+        </div>
+        <div class="case-row result">
+          <span class="case-tag">Result</span>
+          <span class="case-text">Reached <strong>~95% test case accuracy</strong> and cut per-story design time from 1–2 hours to <strong>under 5 minutes</strong>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="skills" class="reveal">
-    <div class="eyebrow"><span class="n">03</span> — Technical Skills</div>
+    <div class="eyebrow"><span class="n">04</span> — Technical Skills</div>
     <div class="section-head"><h2>Index</h2></div>
 
     <div class="skill-grid">
@@ -577,7 +864,7 @@
   </section>
 
   <section id="credentials" class="reveal">
-    <div class="eyebrow"><span class="n">04</span> — Education &amp; Credentials</div>
+    <div class="eyebrow"><span class="n">05</span> — Education &amp; Credentials</div>
     <div class="section-head"><h2>Credentials</h2></div>
 
     <div class="twocol">
@@ -608,6 +895,19 @@
 </footer>
 
 <script>
+  // Auto-updating experience counter
+  // Internship: Jan-May 2023 (5 months, fixed). Full-time: Jan 1 2024 -> today.
+  (function(){
+    const fullTimeStart = new Date(2024, 0, 1);
+    const now = new Date();
+    const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
+    const fullTimeYears = (now - fullTimeStart) / msPerYear;
+    const internshipYears = 5 / 12;
+    const totalYears = fullTimeYears + internshipYears;
+    document.getElementById('expFulltime').textContent = fullTimeYears.toFixed(1) + ' yrs';
+    document.getElementById('expTotal').textContent = totalYears.toFixed(1) + ' yrs';
+  })();
+
   // Vector field: dots represent embeddings; nearest neighbors connect,
   // echoing dense (blue, plentiful) vs sparse (teal, few) retrieval.
   (function(){
@@ -677,7 +977,7 @@
       for(const p of points){
         ctx.beginPath();
         ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle = p.sparse ? 'rgba(15,169,143,0.55)' : 'rgba(52,84,255,0.45)';
+        ctx.fillStyle = p.sparse ? 'rgba(15,169,143,0.4)' : 'rgba(52,84,255,0.32)';
         ctx.fill();
       }
       if(!reduceMotion) requestAnimationFrame(step);
