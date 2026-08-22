@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pallavika Mangalpally — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F5F6F1;
+    --bg-panel: #ECEEE7;
+    --ink: #12151A;
+    --ink-soft: #565D66;
+    --ink-faint: #8A9099;
+    --dense: #3454FF;
+    --dense-soft: #E8ECFF;
+    --sparse: #0FA98F;
+    --sparse-soft: #E1F5F0;
+    --amber: #E8952E;
+    --line: rgba(18,21,26,0.12);
+    --line-soft: rgba(18,21,26,0.07);
+    --card: #FFFFFF;
+    --radius: 14px;
+    --maxw: 920px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+
+  ::selection{ background: var(--dense-soft); color: var(--dense); }
+
+  a{ color: inherit; }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--dense);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .eyebrow .n{ color: var(--ink-faint); }
+
+  h1,h2,h3{ font-family: 'Sora', sans-serif; margin: 0; color: var(--ink); }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: fixed;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    background: rgba(245,246,241,0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 8px;
+    display: flex;
+    gap: 2px;
+    box-shadow: 0 4px 24px rgba(18,21,26,0.06);
+  }
+  nav a{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: background .2s, color .2s;
+    white-space: nowrap;
+  }
+  nav a:hover{ background: var(--dense-soft); color: var(--dense); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  #vectorfield{
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.9;
+  }
+  .hero-content{
+    position: relative;
+    z-index: 2;
+    padding: 40px 28px 60px;
+  }
+  .hero-inner{ max-width: var(--maxw); margin: 0 auto; }
+
+  .hero-tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--sparse);
+    background: var(--sparse-soft);
+    border: 1px solid rgba(15,169,143,0.25);
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 26px;
+    letter-spacing: 0.02em;
+  }
+
+  h1.name{
+    font-size: clamp(40px, 7.5vw, 78px);
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+
+  .role{
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(18px, 2.4vw, 24px);
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
+  }
+  .role .dense-word{ color: var(--dense); }
+
+  .lede{
+    max-width: 620px;
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    margin-bottom: 34px;
+  }
+
+  .contact-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-row a, .contact-row span{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color .2s, transform .15s;
+  }
+  .contact-row a:hover{ border-color: var(--dense); transform: translateY(-1px); }
+  .dot-mark{ width: 6px; height: 6px; border-radius: 50%; background: var(--dense); flex-shrink:0; }
+  .dot-mark.ring{ background: transparent; border: 1.5px solid var(--sparse); }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 90px 0; border-top: 1px solid var(--line-soft); }
+  section:first-of-type{ border-top: none; }
+
+  .section-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .section-head h2{ font-size: clamp(26px, 3.2vw, 34px); font-weight: 700; letter-spacing: -0.01em; }
+
+  /* About */
+  .about-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px 38px;
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    position: relative;
+  }
+  .about-card::before{
+    content: "";
+    position: absolute;
+    top: 0; left: 38px;
+    width: 44px; height: 3px;
+    background: var(--dense);
+    border-radius: 0 0 3px 3px;
+  }
+  .about-card strong{ color: var(--ink); font-weight: 600; }
+
+  /* Stats strip */
+  .stats{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .stat{
+    background: var(--card);
+    padding: 26px 20px;
+    text-align: left;
+  }
+  .stat .num{
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(24px, 3.4vw, 34px);
+    font-weight: 800;
+    color: var(--amber);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat .label{
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* Experience */
+  .role-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .role-header .company{ font-size: 20px; font-weight: 700; font-family: 'Sora', sans-serif; }
+  .role-header .period{ font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-faint); }
+  .role-sub{ color: var(--ink-soft); font-size: 14.5px; margin-bottom: 36px; }
+  .role-sub .loc{ color: var(--ink-faint); }
+
+  .clusters{ display: flex; flex-direction: column; gap: 26px; }
+  .cluster{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+  }
+  .cluster h3{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .cluster h3::before{
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    background: var(--dense);
+    flex-shrink: 0;
+    transform: rotate(45deg);
+  }
+  .cluster ul{ margin: 0; padding: 0; list-style: none; }
+  .cluster li{
+    position: relative;
+    padding-left: 20px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .cluster li:last-child{ margin-bottom: 0; }
+  .cluster li::before{
+    content: "";
+    position: absolute;
+    left: 0; top: 8px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    border: 1.4px solid var(--sparse);
+  }
+  .cluster li strong{ color: var(--ink); font-weight: 600; }
+
+  /* Skills */
+  .skill-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .skill-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .skill-card h4{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-card h4 .sw{ width: 6px; height: 6px; border-radius: 50%; }
+  .chips{ display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip{
+    font-size: 12.5px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--bg-panel);
+    color: var(--ink);
+    border: 1px solid transparent;
+  }
+
+  /* two-col: education + certs */
+  .twocol{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .box{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+  }
+  .box h3{ font-size: 17px; margin-bottom: 18px; }
+  .edu-school{ font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+  .edu-degree{ color: var(--ink-soft); font-size: 14.5px; margin-bottom: 8px; }
+  .edu-meta{ font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-faint); }
+
+  .cert-list{ list-style: none; margin: 0; padding: 0; }
+  .cert-list li{
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 10px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .cert-list li:first-child{ border-top: none; padding-top: 0; }
+  .cert-list li::before{
+    content: "";
+    width: 6px; height: 6px;
+    margin-top: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+  }
+  .cert-list li strong{ color: var(--ink); }
+
+  footer{
+    padding: 60px 0 50px;
+    text-align: center;
+    color: var(--ink-faint);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+  }
+  footer a{ color: var(--dense); text-decoration: none; }
+  .footer-dots{ display:flex; justify-content:center; gap:6px; margin-bottom: 16px; }
+  .footer-dots span{ width:5px; height:5px; border-radius:50%; background: var(--dense); opacity: 0.5; }
+  .footer-dots span:nth-child(2n){ background: var(--sparse); }
+
+  @media (max-width: 720px){
+    nav{ display: none; }
+    .stats{ grid-template-columns: repeat(2, 1fr); }
+    .twocol{ grid-template-columns: 1fr; }
+    section{ padding: 60px 0; }
+    .about-card{ padding: 26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Index</a>
+  <a href="#credentials">Credentials</a>
+</nav>
+
+<section class="hero">
+  <canvas id="vectorfield"></canvas>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <span class="hero-tag">dense × sparse retrieval</span>
+      <h1 class="name">Pallavika<br>Mangalpally</h1>
+      <p class="role">AI Engineer — building <span class="dense-word">RAG pipelines</span> &amp; agentic systems</p>
+      <p class="lede">Production software engineer specializing in multimodal retrieval, hybrid search, and agentic AI workflows at enterprise scale — turning messy documents, tickets, and design files into systems that reason.</p>
+      <div class="contact-row">
+        <a href="mailto:pallavimadipoju@gmail.com"><span class="dot-mark"></span>pallavimadipoju@gmail.com</a>
+        <a href="https://www.linkedin.com/in/pallavika1919/" target="_blank" rel="noopener"><span class="dot-mark ring"></span>linkedin.com/in/pallavika1919</a>
+        <span><span class="dot-mark"></span>Hyderabad, India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section id="about">
+    <div class="eyebrow"><span class="n">01</span> — Summary</div>
+    <div class="section-head"><h2>About</h2></div>
+    <div class="about-card">
+      <p style="margin:0 0 14px;">AI Engineer with production software engineering experience building <strong>GenAI systems, RAG pipelines, and agentic AI workflows</strong> at enterprise scale. Uses Windsurf as a standard part of daily engineering workflow to accelerate development, debugging, and test authoring — alongside hands-on integration of LLM APIs (<strong>Claude, GPT-4, Gemini</strong>) into production code, managing token limits, latency, and cost tradeoffs.</p>
+      <p style="margin:0;">Skilled in hybrid search (dense and sparse retrieval), embedding lifecycle management, multimodal RAG, and hallucination-mitigation guardrails using Python, LangChain, LangGraph, and GCP. Defines KPIs and ROI metrics for AI-assisted workflows, translating customer use cases into scalable GenAI capabilities that integrate with tools like Jira and Figma.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="eyebrow"><span class="n">02</span> — Professional Experience</div>
+    <div class="section-head"><h2>Experience</h2></div>
+
+    <div class="stats">
+      <div class="stat"><span class="num">~70%</span><span class="label">reduction in manual validation effort via multimodal RAG + vector indexing</span></div>
+      <div class="stat"><span class="num">~95%</span><span class="label">test case accuracy from agentic Jira-story ingestion pipeline</span></div>
+      <div class="stat"><span class="num">&lt;5 min</span><span class="label">per-story test design time, down from 1–2 hours</span></div>
+      <div class="stat"><span class="num">~65%</span><span class="label">less manual test authoring per sprint via knowledge-graph semantic search</span></div>
+    </div>
+
+    <div class="role-header">
+      <span class="company">Virtusa Consulting Services Private Limited</span>
+      <span class="period">Jan 2023 — Present</span>
+    </div>
+    <div class="role-sub">AI Engineer &nbsp;·&nbsp; Intern (Jan–May 2023) → Full-Time (Jan 2024–Present) &nbsp;·&nbsp; <span class="loc">Hyderabad</span></div>
+
+    <div class="clusters">
+      <div class="cluster">
+        <h3>Multimodal RAG &amp; Retrieval</h3>
+        <ul>
+          <li>Designed and implemented <strong>multimodal RAG pipelines</strong> integrating OCR and vision models for document re-extraction; architected vector indexing and retrieval strategies that cut manual validation effort by ~70%.</li>
+          <li>Implemented <strong>hybrid search</strong> combining dense retrieval (FAISS) with semantic retrieval over indexed code repositories to automate API test script generation from <code>.feature</code> files; integrated Claude, GPT-4, and Gemini APIs with close attention to token limits, latency, and cost.</li>
+          <li>Extracted requirements from PDFs and Figma via ingestion and chunking strategies; modeled application screens as <strong>NetworkX knowledge graphs</strong> and implemented semantic search for test retrieval, cutting manual test authoring by ~65% per sprint.</li>
+        </ul>
+      </div>
+
+      <div class="cluster">
+        <h3>Agentic Workflows &amp; Orchestration</h3>
+        <ul>
+          <li>Built <strong>agentic AI workflows</strong> with tool calling, planning, and orchestration patterns to ingest Jira stories — reaching ~95% test case accuracy and reducing per-story test design time from 1–2 hours to under 5 minutes.</li>
+          <li>Designed a <strong>multi-agent orchestration system</strong> with memory and planning patterns to monitor Jira story changes and automatically re-trigger documentation workflows and approval emails.</li>
+        </ul>
+      </div>
+
+      <div class="cluster">
+        <h3>Evaluation, ROI &amp; Architecture</h3>
+        <ul>
+          <li>Built comprehensive <strong>RAG evaluation frameworks</strong> computing relevance, faithfulness, accuracy, and toxicity as KPIs; benchmarked pipeline performance against industry alternatives using FastAPI/Django, and reported AI-assisted workflow ROI to stakeholders.</li>
+          <li>Contributed to architecture decisions and technical design reviews for an enterprise GenAI platform, including vector store infrastructure and retrieval optimization; used Windsurf to build React and Node.js frontends, extending delivery across the full stack.</li>
+        </ul>
+      </div>
+
+      <div class="cluster">
+        <h3>Delivery &amp; Collaboration</h3>
+        <ul>
+          <li>Owned end-to-end delivery of AI-assisted features — design, build, and production support — within Agile sprint cycles, collaborating directly with client engineering teams.</li>
+          <li>Contributed reusable RAG and agentic-orchestration components, prompt templates, and internal AI tooling standards to a shared knowledge base, accelerating onboarding across project teams.</li>
+          <li>Completed <strong>GCP Associate Cloud Engineer</strong> certification during internship; uses Windsurf daily for code generation, debugging, and code review.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow"><span class="n">03</span> — Technical Skills</div>
+    <div class="section-head"><h2>Index</h2></div>
+
+    <div class="skill-grid">
+      <div class="skill-card"><h4><span class="sw" style="background:var(--dense)"></span>LLMs &amp; Orchestration</h4>
+        <div class="chips"><span class="chip">Claude (Anthropic)</span><span class="chip">GPT-4</span><span class="chip">Gemini Pro</span><span class="chip">ADK</span><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">Token/Latency/Cost Mgmt</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--sparse)"></span>Vector DBs &amp; Retrieval</h4>
+        <div class="chips"><span class="chip">FAISS</span><span class="chip">Pinecone</span><span class="chip">ChromaDB</span><span class="chip">Hybrid Search (Dense+Sparse)</span><span class="chip">Embedding Lifecycle Mgmt</span><span class="chip">Chunking Strategies</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--amber)"></span>AI / ML</h4>
+        <div class="chips"><span class="chip">RAG Architecture</span><span class="chip">Multi-Agent Systems</span><span class="chip">Agentic AI</span><span class="chip">Guardrails &amp; Hallucination Mitigation</span><span class="chip">Tool Calling Patterns</span><span class="chip">NLP</span><span class="chip">Conversational RAG Bot</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--dense)"></span>AI-Assisted Engineering</h4>
+        <div class="chips"><span class="chip">Windsurf</span><span class="chip">AI-Generated Testing</span><span class="chip">Prompt Engineering</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--ink-faint)"></span>Backend &amp; APIs</h4>
+        <div class="chips"><span class="chip">Django</span><span class="chip">FastAPI</span><span class="chip">REST APIs</span><span class="chip">Figma API</span><span class="chip">SharePoint</span><span class="chip">Gherkin/BDD</span><span class="chip">Multimodal RAG</span><span class="chip">JSON Parsing</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--sparse)"></span>Cloud &amp; DevOps</h4>
+        <div class="chips"><span class="chip">GCP</span><span class="chip">AWS (Basics)</span><span class="chip">GitLab</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Docker</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--ink-faint)"></span>Data &amp; Databases</h4>
+        <div class="chips"><span class="chip">MongoDB</span><span class="chip">SQLite</span><span class="chip">Pandas</span><span class="chip">NumPy</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--amber)"></span>Compliance &amp; Governance</h4>
+        <div class="chips"><span class="chip">Data Governance</span><span class="chip">PII Handling</span><span class="chip">Access Control</span><span class="chip">SOC2 &amp; GDPR Awareness</span><span class="chip">Secure AI Deployment</span></div>
+      </div>
+      <div class="skill-card"><h4><span class="sw" style="background:var(--dense)"></span>Languages, Frontend &amp; Tools</h4>
+        <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Hugging Face Transformers</span><span class="chip">OCR &amp; Vision Models</span><span class="chip">NetworkX Knowledge Graphs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials">
+    <div class="eyebrow"><span class="n">04</span> — Education &amp; Credentials</div>
+    <div class="section-head"><h2>Credentials</h2></div>
+
+    <div class="twocol">
+      <div class="box">
+        <h3>Education</h3>
+        <div class="edu-school">Keshav Memorial Institute of Technology</div>
+        <div class="edu-degree">Bachelor of Technology, Computer Science</div>
+        <div class="edu-meta">Hyderabad &nbsp;·&nbsp; 2020 – 2023</div>
+      </div>
+      <div class="box">
+        <h3>Certifications &amp; Achievements</h3>
+        <ul class="cert-list">
+          <li><span><strong>Google Cloud Certified</strong> — Associate Cloud Engineer</span></li>
+          <li><span><strong>Virtusa Certified</strong> — GenAI Assisted Engineer</span></li>
+          <li><span><strong>Agile 101</strong> Certification</span></li>
+          <li><span><strong>Cyber Security Certification</strong> — Verzeo</span></li>
+          <li><span><strong>Top 5 Finalist</strong> — Virtusa Women's Hackathon (Innovation &amp; Problem Solving)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-dots"><span></span><span></span><span></span><span></span><span></span></div>
+  <p>Pallavika Mangalpally &nbsp;·&nbsp; <a href="mailto:pallavimadipoju@gmail.com">pallavimadipoju@gmail.com</a> &nbsp;·&nbsp; Hyderabad, India</p>
+</footer>
+
+<script>
+  // Vector field: dots represent embeddings; nearest neighbors connect,
+  // echoing dense (blue, plentiful) vs sparse (teal, few) retrieval.
+  (function(){
+    const canvas = document.getElementById('vectorfield');
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let w, h, dpr;
+    let points = [];
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.parentElement.offsetWidth;
+      h = canvas.parentElement.offsetHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      buildPoints();
+    }
+
+    function buildPoints(){
+      const count = Math.round((w*h) / 16000);
+      points = [];
+      for(let i=0;i<count;i++){
+        const sparse = Math.random() < 0.12;
+        points.push({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          vx: (Math.random()-0.5) * 0.15,
+          vy: (Math.random()-0.5) * 0.15,
+          r: sparse ? 2.6 : 1.6,
+          sparse: sparse
+        });
+      }
+    }
+
+    function step(){
+      ctx.clearRect(0,0,w,h);
+      // update
+      for(const p of points){
+        if(!reduceMotion){
+          p.x += p.vx; p.y += p.vy;
+          if(p.x < 0 || p.x > w) p.vx *= -1;
+          if(p.y < 0 || p.y > h) p.vy *= -1;
+        }
+      }
+      // connections (nearest neighbor-ish, distance threshold)
+      const maxDist = Math.min(w,h) * 0.09;
+      for(let i=0;i<points.length;i++){
+        for(let j=i+1;j<points.length;j++){
+          const a = points[i], b = points[j];
+          const dx = a.x-b.x, dy = a.y-b.y;
+          const d = Math.sqrt(dx*dx+dy*dy);
+          if(d < maxDist){
+            const alpha = (1 - d/maxDist) * 0.14;
+            ctx.strokeStyle = (a.sparse||b.sparse) ? `rgba(15,169,143,${alpha})` : `rgba(52,84,255,${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      // dots
+      for(const p of points){
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = p.sparse ? 'rgba(15,169,143,0.55)' : 'rgba(52,84,255,0.45)';
+        ctx.fill();
+      }
+      if(!reduceMotion) requestAnimationFrame(step);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    step();
+  })();
+</script>
+
+</body>
+</html>
